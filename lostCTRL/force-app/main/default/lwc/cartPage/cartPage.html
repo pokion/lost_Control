@@ -1,0 +1,91 @@
+<!--
+ - Created by cezary.bubieniec on 11.10.2022.
+ -->
+
+<!-- Cart Page -->
+<template>
+    <template if:false={isCartEmpty}>
+        <template if:true={modal}>
+            <c-modal title="Clear cart?"
+                     body="You will remove all products from your cart. Please note that this action cannot be undone."
+                     button-text="Delete"
+                     onexit={handleExitModal}
+                     onbuttonclick={handleModalButtonClick}
+            ></c-modal>
+        </template>
+
+        <div class="slds-grid slds-wrap" style="width: 80%; margin: auto; padding-top: 80px;">
+            <div class="slds-col slds-size_9-of-12">
+                <h4 style="padding-bottom: 20px; padding-right: 20px;">Cart <span>({total})</span>
+                    <div class="slds-clearfix" style="display: inline;">
+                        <div class="slds-float_right">
+                            <a onclick={handleOpenModal}>Clear all</a>
+                        </div>
+                    </div>
+                </h4>
+
+                <template for:each={products} for:item="product">
+                    <div style="margin-right: 20px; margin-bottom: 20px;" class="cart-product slds-grid slds-wrap" key={product.id}>
+                        <div class="slds-col slds-size_2-of-12">
+                            <img class="image" src={product.imageUrl}>
+                        </div>
+                        <div class="slds-col slds-size_6-of-12">
+                            <p style="padding-left: 10px;padding-right:10px;">{product.name}</p>
+                        </div>
+                        <div class="slds-col slds-size_4-of-12">
+                            <div class="slds-grid slds-wrap slds-align_absolute-center">
+                                <div class="slds-col">
+                                    <div class="slds-clearfix">
+                                        <div class="slds-float_right">
+                                            <p>{product.price}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-col">
+                                    <input type="number" data-id={product.id} onchange={handleInputChange} value={product.amount} class="count-buy">
+                                </div>
+                                <div class="slds-col pointer" onclick={deleteHandler} data-id={product.id}>
+                                    <lightning-icon size="small" icon-name="utility:delete"></lightning-icon>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+
+            </div>
+            <div class="slds-col slds-size_3-of-12">
+                <div class="payment-box">
+                    <div class="slds-grid slds-gutters">
+                        <div class="slds-col slds-size_1-of-2">
+                            <p class="text">Total amount</p>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2">
+                            <div class="slds-clearfix">
+                                <div class="slds-float_right">
+                                    <p class="text">{getTotalAmount}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="button-order button-icon" onclick={goToDelivery}>
+                        Go to delivery <lightning-icon size="small" icon-name="utility:chevronright"></lightning-icon>
+                    </button>
+
+                </div>
+            </div>
+
+        </div>
+    </template>
+    <template if:true={isCartEmpty}>
+        <div class="slds-grid slds-wrap" style="margin-top: 80px">
+            <div class="slds-col slds-size_1-of-1" style="text-align: center;">
+                <p>Your shopping basket is empty.</p>
+            </div>
+            <div class="slds-col slds-size_1-of-1" style="text-align: center;">
+                <button onclick={handleNavigateToHome} class="button-back">Back to home page</button>
+            </div>
+        </div>
+    </template>
+
+</template>

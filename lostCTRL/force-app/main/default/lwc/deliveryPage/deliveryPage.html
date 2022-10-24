@@ -1,0 +1,174 @@
+<!--
+ - Created by cezary.bubieniec on 13.10.2022.
+ -->
+
+<!-- Delivery Page -->
+<template>
+
+    <div style="width: 80%; margin: auto; padding-top: 80px">
+        <template if:true={isOrder}>
+        <div class="slds-grid slds-wrap" style="width: 60%; float: left">
+            <div class="slds-col slds-size_1-of-1">
+                <p class="section-title">Ship to</p>
+            </div>
+
+            <div class="slds-col slds-size_1-of-1">
+                <form id="address" class="slds-grid slds-wrap" >
+                    <div class="slds-col slds-size_1-of-1">
+                        <input class="address-input" onchange={handleOnChane} data-id="country" placeholder="Country or region">
+                        <span class="country error hide" style="color: red" >
+                            Country can not be empty.
+                        </span>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-2">
+                        <input class="address-input" onchange={handleOnChane} data-id="firstName" placeholder="First name">
+                        <span style="color: red" class="error hide firstName">
+                            First name can not be empty.
+                        </span>
+                    </div>
+                    <div class="slds-size_1-of-2 slds-col">
+                        <input class="address-input" onchange={handleOnChane} data-id="lastName" placeholder="Last name">
+                        <span  style="color: red" class="error hide lastName">
+                            Last name can not be empty.
+                        </span>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-1">
+                        <input class="address-input" onchange={handleOnChane} data-id="streetAddress" placeholder="Street address">
+                        <span  style="color: red" class=" streetAddress error hide">
+                            Street address can not be empty.
+                        </span>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-3">
+                        <input class="address-input" onchange={handleOnChane} data-id="city" placeholder="City">
+                        <span   style="color: red" class="city error hide">
+                            City can not be empty.
+                        </span>
+                    </div>
+                    <div class="slds-col slds-size_1-of-3">
+                        <input class="address-input" onchange={handleOnChane} data-id="state" placeholder="State/Province/Region">
+                        <span   style="color: red" class="state error hide">
+                            State/Province/Region can not be empty.
+                        </span>
+                    </div>
+                    <div class="slds-col slds-size_1-of-3">
+                        <input class="address-input" onchange={handleOnChane} data-id="zipCode" placeholder="ZIP code" type="text" pattern="[0-9]*">
+                        <span  style="color: red" class="zipCode error hide">
+                            ZIP code can not be empty.
+                        </span>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-1">
+                        <input class="address-input" onchange={handleOnChane} data-id="email" placeholder="Email">
+                        <span   style="color: red" class="email error hide">
+                            Email can not be empty.
+                        </span>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-1">
+                        <input class="address-input" onchange={handleOnChane} data-id="phoneNumber" placeholder="Phone number">
+                        <span   style="color: red" class="phoneNumber error hide">
+                            Phone number can not be empty.
+                        </span>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="slds-col slds-size_1-of-1" style="margin-top: 20px;">
+                <p class="section-title">Pay with</p>
+            </div>
+
+            <div class="slds-col slds-size_1-of-1">
+                <fieldset>
+                    <div class="slds-grid slds-wrap">
+                        <div class="slds-col slds-size_1-of-1 payment-method-box">
+                            <input type="radio" id="card" data-by="card" data-id="payment" onchange={handleOnChange} name="paymentMethod">
+                            <label for="card">Pay by card</label>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-1 payment-method-box">
+                            <input type="radio" id="payPal" data-by="payPal" data-id="payment" onchange={handleOnChange} name="paymentMethod">
+                            <label for="payPal">PayPal</label>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-1 payment-method-box">
+                            <input type="radio" id="payPalCredit" data-by="payPalCredit" data-id="payment" onchange={handleOnChange} name="paymentMethod">
+                            <label for="payPalCredit">PayPal CREDIT</label>
+                        </div>
+                    </div>
+                </fieldset>
+                <span  style="color: red" class=" payment error hide">
+                    You need to select payment.
+                </span>
+                <span class="products"></span>
+            </div>
+
+
+
+
+
+
+        </div>
+
+        <div style="width: 10%; height:100%; color:white; float: left">
+            xD
+        </div>
+
+        <div style="width: 30%; float: left">
+            <div class="summary-box">
+                <div class="all-items slds-grid slds-wrap">
+                    <template for:each={products.products} for:item="product" >
+                        <div class="summary-item slds-col slds-size_1-of-1" key={product.id}>
+                            <img src={product.imageURL} style="width: 30%">
+
+                            <div class="item-info" style="width:65%; float: right">
+                                <p style="padding-bottom: 10px">{product.name}</p>
+
+                                <div class="slds-clearfix">
+                                    <div class="slds-float_left">
+                                        <span>{product.amount} pcs.</span>
+                                    </div>
+                                    <div class="slds-float_right">
+                                        <span>{product.price}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+
+                    <div class="slds-col slds-size_1-of-1 summary-item no-border">
+                        <div class="slds-clearfix">
+                            <div class="slds-float_left">
+                                <span>Total amount</span>
+                            </div>
+                            <div class="slds-float_right">
+                                <span>{getTotalPrice}</span>
+                            </div>
+                        </div>
+
+                        <button class="buy-button" onclick={handleClickBuy}>
+                            Buy
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="clear: both;"></div>
+        </template>
+        <template if:false={isOrder}>
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_1-of-1" style="text-align: center;">
+                    <p>Thank you for order.</p>
+                </div>
+                <div class="slds-col slds-size_1-of-1" style="text-align: center;">
+                    <button onclick={handleNavigateToHome} class="button-back">Back to home page</button>
+                </div>
+            </div>
+        </template>
+    </div>
+
+</template>
