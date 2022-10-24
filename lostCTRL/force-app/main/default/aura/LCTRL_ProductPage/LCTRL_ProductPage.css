@@ -1,0 +1,23 @@
+/**
+ * Created by cezary.bubieniec on 27.09.2022.
+ */
+
+.THIS .imageBox > img {
+    height: 150px;
+    width: 150px;
+    object-fit:cover;
+
+}
+.THIS .imageBox {
+    position: relative;
+}
+.THIS .selected {
+    border-radius: 20px;
+    border: 2px #5679C0 solid;
+}
+
+.THIS .deleteIco {
+    position:absolute;
+    top:-5px;
+    right: -5px
+}
