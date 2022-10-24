@@ -1,0 +1,21 @@
+<!--
+ - Created by cezary.bubieniec on 17.10.2022.
+ -->
+
+<!-- Comment -->
+<template>
+
+    <div class="slds-grid slds-wrap box" style="margin-top: 10px; border-bottom: 1px solid rgb(221, 221, 221); padding-bottom: 5px;">
+
+        <div class="slds-col slds-size_1-of-1" style="margin-bottom: 20px; padding-left:15px">
+            <p>{name} • <lightning-formatted-rich-text value={getStars}></lightning-formatted-rich-text> • {getCreateDate}</p>
+
+        </div>
+        <div class="slds-col slds-size_1-of-1" style=" padding-left:15px">
+            <div class="commentBody">
+                {body}
+            </div>
+        </div>
+    </div>
+
+</template>
