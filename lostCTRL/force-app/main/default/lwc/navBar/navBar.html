@@ -1,0 +1,57 @@
+<!--
+ - Created by cezary.bubieniec on 07.10.2022.
+ -->
+
+<!-- Nav Bar -->
+<template>
+
+
+    <div class="container">
+
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-size_2-of-12">
+                <h1>TUTAJ BĘDZIE LOGO JAKIEŚ</h1>
+            </div>
+            <div class="slds-col slds-size_6-of-12 slds-align_absolute-center">
+                <div class="boxSearch slds-grid slds-gutters">
+                    <div class="search slds-col slds-size_10-of-12">
+                        <input type="search" placeholder="What are you looking for?" value={searchString} onchange={handleFormInputChange}>
+                    </div>
+                    <div class="searchButton slds-col slds-size_2-of-12 slds-align_absolute-center" onclick={handleClick}>
+                        <lightning-icon class="white-icon"
+                                        icon-name="utility:search"
+                                        alternative-text="search"
+                                        title="search"
+                                        size="small"
+                                        variant="inverse"
+                        ></lightning-icon>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-col slds-size_2-of-12 slds-align_absolute-center">
+
+                <lightning-icon onclick={loginClick} icon-name="utility:user" class="slds-p-left_small icon-hover"></lightning-icon>
+
+                <span class="indicator">
+                    <lightning-icon icon-name="utility:cart" onclick={handleClickCart} class="slds-p-left_small icon-hover"></lightning-icon>
+                    <template if:false={isCartEmpty}>
+                        <span class="product-count-box">
+                            <span class="product-count">{totalCount}</span>
+                        </span>
+                    </template>
+                </span>
+            </div>
+        </div>
+        <div style="background: rgb(245, 245, 245); padding: 15px 10px;margin-top: 10px">
+            <div class="slds-grid slds-gutters" style="width: 80%; margin: auto">
+                <template for:each={category} for:item="categor">
+                    <div class="slds-col" style="text-align: center" key={categor.Name}>
+                        <span class="category" data-name={categor.Name} onclick={handleCatalogClick}>{categor.Name}</span>
+                    </div>
+                </template>
+            </div>
+        </div>
+
+    </div>
+
+</template>
