@@ -1,0 +1,54 @@
+<!--
+ - Created by cezary.bubieniec on 21.09.2022.
+ -->
+
+<aura:component implements="flexipage:availableForAllPageTypes" controller="LCTRL_SpecParts">
+
+    <aura:attribute name="isBlocked" type="boolean" default="true"/>
+    <aura:attribute name="catalog" type="String"></aura:attribute>
+    <aura:attribute name="partValue" type="String"></aura:attribute>
+    <aura:attribute name="specSelected" type="Object" />
+    <aura:attribute name="parts" type="List" />
+    <aura:attribute name="specs" type="List" />
+    <aura:attribute name="data" type="List"></aura:attribute>
+    <aura:attribute name="dataParts" type="List"></aura:attribute>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="change" value="{!v.catalog}" action="{!c.detectChangeCatalog}"/>
+    <aura:handler event="c:selectedItem" action="{!c.handleSelectedItem}"/>
+
+    <aura:registerEvent name="appEvent" type="c:specs"/>
+
+
+    <div class="slds-grid slds-wrap">
+
+        <aura:iteration items="{!v.specs}" var="item" indexVar="index">
+            <div class="slds-col slds-size_5-of-12">
+                <lightning:combobox label="Part" value="{!item.value.Id}" disabled="true" options="{!v.parts}"  />
+            </div>
+            <div class="slds-col slds-size_1-of-12" style="padding-top:24px; box-sizing: border-box;">
+
+            </div>
+            <div class="slds-col slds-size_5-of-12">
+                <lightning:input label="Value" value="{!item.part.Name}" disabled="true" />
+            </div>
+            <div class="slds-col slds-size_1-of-12" style="padding-top:24px; box-sizing: border-box;" data-idx="{!index}" onclick="{!c.handleDelete}">
+                <lightning:buttonIcon iconName="utility:delete" class="slds-align_absolute-center bottom" title="Remove"  alternativeText="Close window"/>
+            </div>
+        </aura:iteration>
+
+        <div class="slds-col slds-size_5-of-12">
+            <lightning:combobox label="Part" value="{!v.partValue}" onchange="{!c.changeParts}" options="{!v.parts}" disabled="{!v.isBlocked}" />
+        </div>
+        <div class="slds-col slds-size_1-of-12" style="padding-top:24px; box-sizing: border-box;">
+            <lightning:icon iconName="utility:chevronright" size="small" class="slds-align_absolute-center bottom"/>
+        </div>
+        <div class="slds-col slds-size_5-of-12" style="position:relative">
+            <c.LCTRL_LookupFieldCustom label="Value" icon="action:new_custom46" labelAddOption="New Part" data="{!v.dataParts}" value="{!v.specSelected}" disabled="{!v.isBlocked}" />
+        </div>
+        <div class="slds-col slds-size_1-of-12" style="padding-top:24px; box-sizing: border-box;">
+            <lightning:buttonIcon iconName="utility:add" disabled="{!v.isBlocked}" onclick="{!c.addSpecHandler}" class="slds-align_absolute-center bottom" title="Add" value="{!v.specSelected}" alternativeText="Close window"/>
+        </div>
+    </div>
+
+</aura:component>

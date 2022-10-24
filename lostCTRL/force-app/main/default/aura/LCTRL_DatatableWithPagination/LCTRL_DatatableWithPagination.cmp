@@ -1,0 +1,60 @@
+<!--
+ - Created by cezary.bubieniec on 28.09.2022.
+ -->
+
+<aura:component description="LCTRL_DatatableWithPagination">
+
+    <aura:registerEvent name="rowaction" type="c:rowaction"/>
+
+    <aura:attribute name="maxViewRecords" type="List" default="[
+        { 'label': '25', 'value': '25' },
+        { 'label': '50', 'value': '50' },
+        { 'label': '100', 'value': '100' }
+    ]" />
+    <aura:attribute name="currentCountView" type="String" default="25" />
+    <aura:attribute name="currentPage" type="Integer" default="0" />
+    <aura:attribute name="pages" type="Integer" />
+    <aura:attribute name="dataVisible" type="List" />
+
+    <aura:attribute name="blockNextButtons" type="Boolean" />
+    <aura:attribute name="blockPreviousButtons" type="Boolean" />
+
+    <aura:attribute name="data" type="List" />
+    <aura:attribute name="columns" type="List" />
+    <aura:attribute name="hideCheckboxColumn" type="Boolean" default="true" />
+    <aura:attribute name="keyField" type="String" default="Id" />
+
+    <aura:handler name="change" value="{!v.data}" action="{!c.tableInit}"/>
+    <aura:handler name="change" value="{!v.currentCountView}" action="{!c.tableInit}"/>
+
+    <div class="slds-card">
+        <div style="padding: 10px; width: 150px">
+            <lightning:combobox label="Max Visible Records" value="{!v.currentCountView}" options="{!v.maxViewRecords}" />
+        </div>
+        <lightning:datatable
+                hideCheckboxColumn="{!v.hideCheckboxColumn}"
+                columns="{!v.columns}"
+                data="{!v.dataVisible}"
+                keyField="{!v.keyField}"
+                onrowaction="{!c.handleRowAction}"
+        ></lightning:datatable>
+        <div class="slds-grid slds-gutters" style="padding:15px">
+            <div class="slds-col slds-size_2-of-5">
+                <div class="slds-float_right">
+                    <lightning:button label="First" iconName="utility:jump_to_left" disabled="{!v.blockPreviousButtons}" iconPosition="left" onclick="{!c.first}" />
+                    <lightning:button label="" iconName="utility:chevronleft" disabled="{!v.blockPreviousButtons}" iconPosition="left" onclick="{!c.previous}" />
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-5">
+                <div class="slds-align_absolute-center" style="font-size: 1.4em">
+                    <span>{!v.currentPage}</span> / <span>{!v.pages}</span>
+                </div>
+            </div>
+            <div class="slds-col slds-size_2-of-5">
+                <lightning:button label="" iconName="utility:chevronright" disabled="{!v.blockNextButtons}" iconPosition="right" onclick="{!c.next}" />
+                <lightning:button label="Last" iconName="utility:jump_to_right" disabled="{!v.blockNextButtons}" iconPosition="right" onclick="{!c.last}" />
+            </div>
+        </div>
+    </div>
+
+</aura:component>

@@ -1,0 +1,62 @@
+<!--
+ - Created by cezary.bubieniec on 22.09.2022.
+ -->
+
+<aura:component description="LCTRL_ComboBoxWithSearch" implements="flexipage:availableForAllPageTypes" controller="LCTRL_CategoryService">
+
+    <aura:attribute name="focusCombobox" type="boolean" default="false"/>
+    <aura:attribute name="required" type="boolean" default="false" />
+    <aura:attribute name="categoryList" type="Object" />
+    <aura:attribute name="allCategories" type="List" />
+    <aura:attribute name="searchValue" type="String" />
+    <aura:attribute name="newCategory" type="boolean" default="false" />
+
+    <aura:registerEvent name="newCategoryEvent" type="c:newCategory"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <lightning:input label="Category" onblur="{!c.comboboxHide}" required="{!v.required}" onfocus="{!c.comboboxShow}" value="{!v.searchValue}" name="category" type="search"/>
+    <aura:if isTrue="{!v.focusCombobox}">
+        <div class="resultBox slds-p-vertical_xx-small" style="width:93%">
+
+            <aura:iteration var="categoryItem" items="{!v.categoryList.Categories}">
+                <div class="slds-p-horizontal_medium resultItem slds-p-vertical_xx-small slds-grid slds-grid" data-category-id="{!categoryItem.Id}" onclick="{!c.selectCategory}">
+                    <div class="slds-col slds-size_2-of-12">
+                        <lightning:icon iconName="standard:category" title="category" />
+                    </div>
+                    <div class="slds-col slds-size_10-of-12">
+                        <p>{!categoryItem.Catalog.Name}</p>
+                        <p>{!categoryItem.Name}</p>
+                    </div>
+                </div>
+            </aura:iteration>
+
+            <div class="slds-p-horizontal_medium resultItem slds-p-vertical_xx-small slds-grid slds-grid" onclick="{!c.newCategorySwitcher}">
+                <div class="slds-col slds-size_2-of-12">
+                    <lightning:icon size="small" iconName="utility:add" title="category" />
+                </div>
+                <div class="slds-col slds-size_10-of-12">
+                    <p>New Category</p>
+                </div>
+            </div>
+        </div>
+    </aura:if>
+
+    <aura:if isTrue="{!v.newCategory}">
+
+        <section role="dialog" style="width: 100vw; margin-left: -70%;" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open slds-align_absolute-center">
+            <div class="slds-modal__container">
+                <lightning:buttonIcon variant="bare-inverse"  iconName="utility:close" onclick="{!c.newCategorySwitcher}" />
+                <div class="slds-modal__header">
+                    <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">New Category</h1>
+                </div>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <lightning:recordForm objectApiName="ProductCategory" oncancel="{!c.newCategorySwitcher}" onsuccess="{!c.categorySuccessHandler}" layoutType="Compact" columns="2" mode="edit" ></lightning:recordForm>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open slds-align_absolute-center" style="width: 100vw; margin-left: -70%;" role="presentation"></div>
+
+    </aura:if>
+
+</aura:component>
