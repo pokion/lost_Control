@@ -1,0 +1,10 @@
+{
+  "activeViewId" : "547cd201-aa93-4f1d-9804-b4cce69e36d1",
+  "appPageId" : "671bc95a-62c5-4769-8a1c-f91255d8c2c7",
+  "configurationTags" : [ ],
+  "id" : "4ce2ebf6-94c2-439a-8ada-6ec4e349b1c9",
+  "label" : "My Profile",
+  "routeType" : "my-profile",
+  "type" : "route",
+  "urlPrefix" : "myprofile"
+}

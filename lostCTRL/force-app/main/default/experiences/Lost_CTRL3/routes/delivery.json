@@ -1,0 +1,11 @@
+{
+  "activeViewId" : "b31d1690-18b1-47d1-b9eb-196cb3e2b186",
+  "appPageId" : "de1f69b2-bfda-4260-9297-c5035e0530c9",
+  "configurationTags" : [ ],
+  "id" : "3d10f6b3-abd2-4ba5-a039-9ccbff3e8a37",
+  "label" : "delivery",
+  "pageAccess" : "Public",
+  "routeType" : "custom-delivery",
+  "type" : "route",
+  "urlPrefix" : "delivery"
+}

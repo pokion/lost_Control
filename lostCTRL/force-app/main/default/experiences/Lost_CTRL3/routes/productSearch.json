@@ -1,0 +1,11 @@
+{
+  "activeViewId" : "bd6ceea6-7eb1-45e0-86af-34ec01de0612",
+  "appPageId" : "de1f69b2-bfda-4260-9297-c5035e0530c9",
+  "configurationTags" : [ ],
+  "id" : "e16600f7-78e3-4911-98d2-829f09aabdff",
+  "label" : "Product search",
+  "pageAccess" : "Public",
+  "routeType" : "custom-product-search",
+  "type" : "route",
+  "urlPrefix" : "product-search"
+}

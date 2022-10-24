@@ -1,0 +1,10 @@
+{
+  "cmsSettings" : { },
+  "currentThemeId" : "67e5af3c-a6f4-4f14-b973-0910dc60ee37",
+  "headMarkup" : "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, minimum-scale=1\">\n<script type='text/javascript' src='https://c.la2-c1-cdg.salesforceliveagent.com/content/g/js/56.0/deployment.js'></script>",
+  "id" : "de1f69b2-bfda-4260-9297-c5035e0530c9",
+  "isRelaxedCSPLevel" : true,
+  "label" : "main",
+  "templateName" : "Starter Template",
+  "type" : "appPage"
+}

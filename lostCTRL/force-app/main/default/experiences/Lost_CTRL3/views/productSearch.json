@@ -1,0 +1,61 @@
+{
+  "appPageId" : "de1f69b2-bfda-4260-9297-c5035e0530c9",
+  "componentName" : "siteforce:sldsOneColLayout",
+  "id" : "bd6ceea6-7eb1-45e0-86af-34ec01de0612",
+  "label" : "Product search",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : { },
+      "componentName" : "c:navBar",
+      "id" : "78c8e189-4906-4005-93e3-a865ea48db81",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "2c180449-8fa5-4939-975c-da0a6f93a66c",
+    "regionName" : "header",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : { },
+      "componentName" : "c:productSearch",
+      "id" : "e6029b6f-8a29-4334-8b69-c1fc3a5c4607",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "d31dfa4e-818d-4215-9df0-3147dcdc6ca8",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : { },
+      "componentName" : "c:footer",
+      "id" : "0fb75268-c442-4a96-88fe-e4f80a78a1b5",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "9ffc615c-8da4-4d2a-8c2e-8f3dcf6c2e5f",
+    "regionName" : "footer",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "description" : "",
+        "title" : "Product search"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "7b2387dd-0f1c-403b-bd36-779e856aa050",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "f2618412-36f0-4261-8377-8386926649a4",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "custom-product-search"
+}

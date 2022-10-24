@@ -1,0 +1,48 @@
+{
+  "forgotPasswordRouteId" : "146666fb-bc5d-4326-a7d3-f653ca2c3581",
+  "isAvailableToGuests" : true,
+  "isFilteredComponentsView" : false,
+  "isProgressiveRenderingEnabled" : false,
+  "loginAppPageId" : "8b8ff9ed-4b2e-4dc7-93d9-0d528ad056ea",
+  "mainAppPageId" : "de1f69b2-bfda-4260-9297-c5035e0530c9",
+  "preferredDomain" : "none",
+  "selfRegistrationRouteId" : "95613a9c-d607-4353-9619-d2b7b4306ec1",
+  "trustedSitesForScript" : [ {
+    "id" : "b674ceb0-a58e-42dd-b05c-846eb5518b5c",
+    "isActive" : true,
+    "trustedSiteName" : "chat",
+    "trustedSiteUrl" : "https://d.la2-c1-cdg.salesforceliveagent.com/chat/rest/Visitor/",
+    "type" : "trustedSitesForScripts"
+  }, {
+    "id" : "12b492e7-f8bf-4381-bfad-f7e9a74d29e7",
+    "isActive" : true,
+    "trustedSiteName" : "chatBot",
+    "trustedSiteUrl" : "https://d.la2-c1-cdg.salesforceliveagent.com",
+    "type" : "trustedSitesForScripts"
+  }, {
+    "id" : "b72acf64-1d8f-4061-9f75-3d32c4f34f2f",
+    "isActive" : true,
+    "trustedSiteName" : "s",
+    "trustedSiteUrl" : "https://britenet94-dev-ed.builder.salesforce-experience.com/",
+    "type" : "trustedSitesForScripts"
+  }, {
+    "id" : "f9da2504-22ce-48b7-9c03-6dc35f7052e7",
+    "isActive" : true,
+    "trustedSiteName" : "ss",
+    "trustedSiteUrl" : "https://britenet94-dev-ed.live-preview.salesforce-experience.com",
+    "type" : "trustedSitesForScripts"
+  }, {
+    "id" : "3ff701f8-13f8-442e-ab70-f651f5a1db9a",
+    "isActive" : true,
+    "trustedSiteName" : "sss",
+    "trustedSiteUrl" : "https://accounts.google.com/",
+    "type" : "trustedSitesForScripts"
+  }, {
+    "id" : "016c4f97-4335-4ca4-989f-ad4b91d696b4",
+    "isActive" : true,
+    "trustedSiteName" : "google",
+    "trustedSiteUrl" : "https://c.la2-c1-cdg.salesforceliveagent.com/content/g/js/56.0/deployment.js",
+    "type" : "trustedSitesForScripts"
+  } ],
+  "type" : "site"
+}
