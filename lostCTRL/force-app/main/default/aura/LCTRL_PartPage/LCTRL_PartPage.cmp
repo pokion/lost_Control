@@ -1,0 +1,71 @@
+<!--
+ - Created by cezary.bubieniec on 05.10.2022.
+ -->
+
+<aura:component description="LCTRL_PartPage" controller="LCTRL_PartService" implements="flexipage:availableForAllPageTypes">
+    <aura:attribute name="columns" type="List" />
+    <aura:attribute name="data" type="List" />
+    <aura:attribute name="inputSearch" type="String" />
+    <aura:attribute name="newPart" type="Boolean" default="false" />
+    <aura:attribute name="fields" type="String[]" default="[ 'Name', 'Part__c' ]" />
+    <aura:attribute name="selectedId" type="String" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="rowaction" event="c:rowaction" action="{!c.handleRowAction}"/>
+
+    <div class="main">
+
+        <div class="slds-card">
+            <div class="slds-p-around_medium lgc-bg">
+                <lightning:input
+                        name="enter-search"
+                        type="search"
+                        value="{!v.inputSearch}"
+                />
+            </div>
+            <div class="slds-clearfix" style="margin-left:15px;margin-bottom:10px">
+                <lightning:button variant="brand-outline" label="New Specification" onclick="{!c.newProductModalSwitcher}"/>
+                <lightning:button variant="brand" label="Search" onclick="{!c.searchProduct}" />
+            </div>
+        </div>
+        <br/>
+        <div class="datatable">
+            <c.LCTRL_DatatableWithPagination
+                    columns="{!v.columns}"
+                    data="{!v.data}"
+            ></c.LCTRL_DatatableWithPagination>
+        </div>
+
+    </div>
+
+    <aura:if isTrue="{!v.newPart}" >
+        <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <div class="slds-modal__header">
+                    <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">New Specification</h1>
+                </div>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <div class="slds-gutters slds-grid" style="height: 200px">
+                        <div class="slds-col slds-size_6-of-12">
+                            <c:lookupField required="true"
+                                    objectAPIName="SpecPart__c"
+                                    label="Part Name"
+                                    returnFields="['Name__c','Catalog__r.Name']"
+                                    queryFields="['Name__c', 'Catalog__r.Name']"
+                                    selectedId="{!v.selectedId}"/>
+                        </div>
+                        <div class="slds-col slds-size_6-of-12">
+                            <lightning:input label="Value" required="true" aura:id="name" name="name" type="text"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick="{!c.newProductModalSwitcher}" aria-label="Cancel and close">Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick="{!c.saveNewPart}">Save</button>
+                </div>
+
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+    </aura:if>
+</aura:component>
