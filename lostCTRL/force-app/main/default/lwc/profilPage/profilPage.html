@@ -1,0 +1,173 @@
+<!-- sldsValidatorIgnore -->
+<!-- sldsValidatorIgnore -->
+<!-- sldsValidatorIgnore -->
+<!-- sldsValidatorIgnore -->
+<!--
+ - Created by cezary.bubieniec on 19.10.2022.
+ -->
+
+<!-- Profil Page -->
+<template>
+
+    <div class="slds-grid slds-gutters" style="width: 80%; margin: 80px auto" >
+        <div class="slds-col slds-size_1-of-4">
+            <div class="slds-grid slds-wrap" style="border-right: 3px solid rgb(245, 245, 245);">
+                <div class="slds-col slds-size_1-of-1 " style="padding: 12px 16px;">
+                    <p>Hi,</p>
+                    <p>{name}</p>
+                </div>
+                <div class="slds-col slds-size_1-of-1 menuItem">
+                    <p>Orders</p>
+                </div>
+                <div class="slds-col slds-size_1-of-1 menuItem">
+                    <p>Complaints</p>
+                </div>
+            </div>
+        </div>
+        <div class="slds-col slds-size_3-of-4" if:true={isLoaded}>
+            <template if:true={isOrder}>
+                <div class="slds-grid slds-wrap">
+                    <template for:each={getOrders} for:item="order">
+                        <div class="slds-size_1-of-1" key={order}>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Product Name</th>
+                                        <th scope="col">Quantity</th>
+                                        <th scope="col">Order Date</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td style="padding: 0px;"></td>
+                                            <td style="padding: 0px;"></td>
+                                            <td rowspan={order.length} class="centerText">{order.oderDate}</td>
+                                            <td rowspan={order.length} class="centerText"> <lightning-button-icon icon-name="utility:settings" onclick={open} data-id={order.id}  alternative-text="Settings" title="Settings"></lightning-button-icon></td>
+                                        </tr>
+                                        <template for:each={order.value} for:item="item">
+                                            <tr key={item}>
+                                                <td class="noBorder">{item.Product__r.Name}</td>
+                                                <td class="noBorder centerText">{item.Quantity__c}
+                                                </td>
+                                            </tr>
+                                        </template>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </template>
+        </div>
+    </div>
+
+
+
+    <template if:true={isComplaint}>
+        <div class="container">
+            <div class="modal">
+    
+                <div class="top" style="margin-bottom: 20px;">
+                    <p class="title">Add complaint</p>
+                    <lightning-icon icon-name="utility:close" onclick={exit} class="exit" size="small"></lightning-icon>
+                </div>
+    
+                <div class="body">
+                    <div class="slds-grid slds-wrap">
+                        <div class="slds-col slds-size_1-of-2">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-1">
+                                    <input class="address-input dat" onchange={handleOnChane} data-id="name" placeholder="Name">
+                                </div>
+                                <div class="slds-col slds-size_1-of-1">
+                                    <span class="country error hide" style="color: red" >
+                                        Name can not be empty.
+                                    </span>
+                                </div>
+                            </div>                                                
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-2">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-1">
+                                    <input class="address-input dat" onchange={handleOnChane} data-id="phone" placeholder="Phone">
+                                </div>
+                                <div class="slds-col slds-size_1-of-1">
+                                    <span class="country error hide" style="color: red" >
+                                        Phone number can not be empty.
+                                    </span>
+                                </div>
+                            </div>                                                
+                        </div>
+
+
+                        <div class="slds-col slds-size_1-of-1">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-1">
+                                    <input class="address-input dat" onchange={handleOnChane} data-id="email" placeholder="Email">
+                                </div>
+                                <div class="slds-col slds-size_1-of-1">
+                                    <span class="country error hide" style="color: red" >
+                                        Email can not be empty.
+                                    </span>
+                                </div>
+                            </div>                                                
+                        </div>
+
+
+                        <div class="slds-col slds-size_1-of-1">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-1">
+                                    <input class="address-input dat" onchange={handleOnChane} data-id="subject" placeholder="Subject">
+                                </div>
+                                <div class="slds-col slds-size_1-of-1">
+                                    <span class="country error hide" style="color: red" >
+                                        Subject can not be empty.
+                                    </span>
+                                </div>
+                            </div>                                                
+                        </div>
+
+
+                        <div class="slds-col slds-size_1-of-1">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-1">
+                                    <textarea rows="6" cols="50" maxlength="2000" class="address-textarea dat" onchange={handleOnChane} data-id="description" placeholder="Description"></textarea>
+                                </div>
+                                <div class="slds-col slds-size_1-of-1">
+                                    <span class="country error hide" style="color: red" >
+                                        Description can not be empty.
+                                    </span>
+                                </div>
+                            </div>                                                
+                        </div>
+
+
+                    </div>
+                </div>
+    
+                <div class="slds-float_right buttons">
+                    <button class="button" onclick={exit}>Cancel</button>
+                    <button class="button success" onclick={buttonClick}>Add complaint</button>
+                </div>
+    
+            </div>
+    
+            <div class="background" onclick={exit}>
+            </div>
+        </div>
+
+        <template if:true={isSpinner}>
+            <div class="slds-spinner_container bigo">
+              <div role="status" class="slds-spinner slds-spinner_medium slds-spinner_brand">
+                <span class="slds-assistive-text">Loading</span>
+                <div class="slds-spinner__dot-a"></div>
+                <div class="slds-spinner__dot-b"></div>
+              </div>
+            </div>
+        </template>
+
+    </template>
+</template>
