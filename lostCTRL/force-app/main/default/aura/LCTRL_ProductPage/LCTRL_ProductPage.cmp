@@ -1,0 +1,44 @@
+<aura:component description="LCTRL_ProductPage" implements="flexipage:availableForAllPageTypes" controller="LCTRL_ProductService" access="global">
+
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="data" type="List"/>
+    <aura:attribute name="newProduct" type="boolean" default="false"/>
+    <aura:attribute name="editProduct" type="boolean" default="false"/>
+    <aura:attribute name="editProductObject" type="Object" />
+    <aura:attribute name="inputSearch" type="String" />
+    <aura:attribute name="currentId" type="String" default="" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <aura:handler event="c:LCTRL_ToggleModal" action="{!c.newProductModalSwitcher}"/>
+    <aura:handler name="rowaction" event="c:rowaction" action="{!c.handleRowAction}"/>
+
+    <div class="main">
+
+        <div class="slds-card">
+            <div class="slds-p-around_medium lgc-bg">
+                <lightning:input
+                    name="enter-search"
+                    type="search"
+                    value="{!v.inputSearch}"
+                />
+            </div>
+            <div class="slds-clearfix" style="margin-left:15px;margin-bottom:10px">
+                <lightning:button variant="brand-outline" label="New" onclick="{!c.newProductModalSwitcher}"/>
+                <lightning:button variant="brand" label="Search" onclick="{!c.searchProduct}" />
+            </div>
+        </div>
+        <br/>
+        <div class="datatable">
+            <c.LCTRL_DatatableWithPagination
+                    columns="{!v.columns}"
+                    data="{!v.data}"
+            ></c.LCTRL_DatatableWithPagination>
+        </div>
+
+    </div>
+
+    <aura:if isTrue="{!v.newProduct}">
+        <c.LCTRL_ModalProduct />
+    </aura:if>
+
+</aura:component>

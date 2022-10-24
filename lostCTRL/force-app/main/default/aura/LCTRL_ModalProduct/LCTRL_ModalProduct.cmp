@@ -1,0 +1,104 @@
+<!--
+ - Created by cezary.bubieniec on 28.09.2022.
+ -->
+
+<aura:component description="modalProduct" controller="LCTRL_ProductService">
+    <lightning:notificationsLibrary aura:id="notifLib"/>
+    <aura:attribute name="productExternal" type="Object" />
+
+    <aura:attribute name="productId" type="String" />
+
+    <aura:attribute name="catalog" type="String" />
+    <aura:attribute name="category" type="Object" />
+    <aura:attribute name="filetype" type="List" default="['.png', '.jpg', '.jpeg', '.webp']" />
+    <aura:attribute name="images" type="List" />
+    <aura:attribute name="specs" type="List" />
+    <aura:attribute name="nameProduct" type="String" />
+
+    <aura:handler event="c:newCategory" action="{!c.handleChangeCategory}"/>
+    <aura:handler event="c:specs" action="{!c.handleSpecChange}"/>
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+
+    <aura:registerEvent name="LCTRL_ToggleModall" type="c:LCTRL_ToggleModal"/>
+
+    <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <div class="slds-modal__header">
+                <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">New Product</h1>
+            </div>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col slds-size_6-of-12">
+                        <lightning:input label="Product name" required="true" aura:id="name" name="name" type="text"/>
+                    </div>
+                    <div class="slds-col slds-size_6-of-12" style="position:relative">
+                        <c.LCTRL_ComboBoxWithSearch required="true"/>
+                        <!--<c:lookupField required="true"
+                                    objectAPIName="SpecPart__c"
+                                    label="Part Name"
+                                    returnFields="['Name__c','Catalog__r.Name']"
+                                    queryFields="['Name__c', 'Catalog__r.Name']"
+                                    selectedId="{!v.selectedId}"/>-->
+                    </div>
+                </div>
+                <span style="clear: both"></span>
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col slds-size_6-of-12">
+                        <lightning:input label="In Stock" required="true" aura:id="quanti" name="quantity" type="number"/>
+                    </div>
+                    <div class="slds-col slds-size_6-of-12">
+                        <ui:inputCurrency aura:id="amount" required="true" label="Price" class="field" updateOn="keyup"/>
+                    </div>
+                </div>
+                <div class="slds-grid slds-gutters" style="padding-top:20px">
+                    <div class="slds-col">
+                        <p style="font-weight: bold;margin-top:10px;">Description</p>
+                        <lightning:inputRichText required="true" aura:id="desc" label="Description"/>
+                    </div>
+                </div>
+                <p style="font-weight: bold;margin-top:10px;"><span style="color:red">*</span>Specification</p>
+                <c:LCTRL_ComboboxWithTwoInput catalog="{!v.catalog}"/>
+                <div class="slds-grid slds-gutters" style="padding-top: 10px">
+                    <div class="slds-col slds-size_12-of-12">
+                        <p style="font-weight: bold;margin-top:10px;"><span style="color:red">*</span>Images</p>
+                        <lightning:fileUpload label="Add Images To Product"
+                                              name="fileUploader"
+                                              multiple="true"
+                                              accept="{!v.filetype}"
+                                              onuploadfinished="{!c.handleUploadFinished}" />
+                    </div>
+                </div>
+                <div class="slds-grid slds-wrap" style="padding-top: 30px">
+                    <aura:iteration items="{!v.images}" var="image" indexVar="idx">
+                        <aura:if isTrue="{!image.IsMainImage == false}">
+                            <div class="slds-col">
+                                <div class="imageBox slds-align_absolute-center" >
+                                    <span data-idx="{!idx}" onclick="{!c.removeImage}">
+                                        <lightning:buttonIcon iconName="utility:delete" alternativeText="delete" class="deleteIco" />
+                                    </span>
+                                    <img src="{!'/sfc/servlet.shepherd/version/download/' + image.Id}" data-image-id="{!image.Id}" onclick="{!c.handleClickImage}" />
+                                </div>
+                            </div>
+                        </aura:if>
+                        <aura:if isTrue="{!image.IsMainImage == true}">
+                            <div class="slds-col">
+                                <div class="imageBox selected slds-align_absolute-center">
+                                    <span data-idx="{!idx}" onclick="{!c.removeImage}">
+                                        <lightning:buttonIcon iconName="utility:delete" alternativeText="delete" class="deleteIco" />
+                                    </span>
+                                    <img  src="{!'/sfc/servlet.shepherd/version/download/' + image.Id}" data-image-id="{!image.Id}" onclick="{!c.handleClickImage}" />
+                                </div>
+                            </div>
+                        </aura:if>
+                    </aura:iteration>
+                </div>
+            </div>
+            <div class="slds-modal__footer">
+                <button class="slds-button slds-button_neutral" aria-label="Cancel and close" onclick="{!c.newProductModalSwitcher}">Cancel</button>
+                <button class="slds-button slds-button_brand" onclick="{!c.newProductModalHandler}">Save</button>
+            </div>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+
+</aura:component>
