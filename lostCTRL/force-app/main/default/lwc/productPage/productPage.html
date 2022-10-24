@@ -1,0 +1,184 @@
+<!--
+ - Created by cezary.bubieniec on 10.10.2022.
+ -->
+
+<!-- Product Page -->
+<template>
+
+
+    <c-modal if:true={isModalOpen}
+             title="Product added to cart"
+             button-variant="success"
+             button-text="Go to cart"
+             body={getBodyModal}
+             onexit={handleExitModal}
+             onbuttonclick={handleModalButtonClick}
+    >
+    </c-modal>
+
+    <div style="width: 80%; margin: auto; padding-top: 80px;">
+        <template if:true={isLoaded} >
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col slds-size_6-of-12">
+                    <c-image-vewer all-images={record.images}
+                    ></c-image-vewer>
+                </div>
+                <div class="slds-col slds-size_6-of-12">
+                    <div class="slds-grid slds-gutters">
+                        <div class="slds-col">
+                            <div style="padding-bottom: 10px">
+                                <h3 class="product-name">{record.name}</h3><br>
+                                <span class="ratingView">{average}</span>
+                                <span class="ratingView gold">★</span>
+                                <span> ({commentsCount} comments)</span><br>
+                                <span>brand: </span> <h4 class="brand-name">{record.category.Name}</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-grid slds-gutters">
+                        <div class="slds-col">
+                            <div class="specs-box">
+                                <template for:each={record.specs} for:item="spec">
+                                    <div class="specs" key={spec.id}>
+                                        <span class="spec-name">{spec.value.name}: </span>
+                                        <span class="spec-part">{spec.part.name}</span>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                        <div class="slds-col">
+                            <div class="buy-box">
+                                <div class="slds-clearfix" style="padding-bottom: 10px;">
+                                    <div class="slds-float_right">
+                                        <span class="price">{getPrice}</span>
+                                    </div>
+                                </div>
+
+                                <div class="slds-grid slds-gutters">
+                                    <div class="slds-col slds-size_3-of-12">
+                                        <input type="number" onchange={handleFormInputChange} value="1" class="count-buy">
+<!--                                        <c-inpur-number value="1"></c-inpur-number>-->
+                                    </div>
+                                    <div class="slds-col slds-size_9-of-12">
+                                        <button class="buy-button icon-buy" onclick={handleBuyClick}> <lightning-icon icon-name="utility:cart" variant="inverse" size="small" class="slds-p-left_small"></lightning-icon> Add to cart </button>
+                                    </div>
+
+                                </div>
+                                <div class="slds-grid slds-gutters">
+                                    <span class="in-stock">In stock: {record.quantity} pcs.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="slds-grid slds-gutters" style="margin-top: 30px; padding-top:10px; border-top: 1px solid rgb(221, 221, 221)">
+                <div class="slds-col">
+                    <lightning-formatted-rich-text
+                            value={record.description}
+                    ></lightning-formatted-rich-text>
+                </div>
+            </div>
+
+            <div class="slds-grid slds-gutters" style="margin-top: 30px; padding-top:10px;">
+                <div class="slds-col">
+                    <div class="addCommentBox">
+                        <div class="title ">
+                            <p class="product-name">Do you have this product?</p>
+                        </div>
+                        <div class="name">
+                            <p>{record.name}</p>
+                        </div>
+                        <div>
+                            <button onclick={handleAddComment} class="button-back">Add comment</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slds-grid slds-wrap" style="margin-top: 30px; padding-top:10px; border-top: 1px solid rgb(221, 221, 221)">
+                <template for:each={comments} for:item="comment">
+                    <div class="slds-col slds-size_1-of-1" key={comment.FirstName__c}>
+                        <c-comment
+                                starts={comment.Star__c}
+                                body={comment.comment__c}
+                                name={comment.FirstName__c}
+                                create-date={comment.CreatedDate}
+                        >
+                        </c-comment>
+                    </div>
+                </template>
+
+            </div>
+
+        </template>
+    </div>
+
+    <template if:true={isModalCommentOpen}>
+        <div class="container">
+            <div class="modal">
+
+                <div class="top" style="margin-bottom: 20px;">
+                    <p class="title">Comment</p>
+                    <lightning-icon icon-name="utility:close" onclick={exit} class="exit" size="small"></lightning-icon>
+                </div>
+
+                <!--<p class="body">{body}</p>-->
+                <div class="body">
+                    <div class="slds-grid slds-wrap">
+                        <div class="slds-col slds-size_1-of-1" style="border-bottom: 2px solid rgb(221, 221, 221); margin-bottom: 10px;">
+                            <div style="padding: 10px;" class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-4">
+                                    <img style="width: 72px; margin-right: 20px;" src={getMainImage}>
+                                </div>
+                                <div class="slds-col slds-size_3-of-4">
+                                    <p style="line-height: 74px">{record.name}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-1">
+                            <p style="font:1.5rem; font-weight: bold">Rate product</p>
+                            <div class="stars" style="font-size: 2.5rem">
+                                <span data-count="1" style="cursor: pointer" class="star" onclick={handleClickStar}>★</span>
+                                <span data-count="2" style="cursor: pointer" class="star" onclick={handleClickStar}>★</span>
+                                <span data-count="3" style="cursor: pointer" class="star" onclick={handleClickStar}>★</span>
+                                <span data-count="4" style="cursor: pointer" class="star" onclick={handleClickStar}>★</span>
+                                <span data-count="5" style="cursor: pointer" class="star" onclick={handleClickStar}>★</span>
+                            </div>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-1">
+                            <p style="font:1.5rem; font-weight: bold">Write what you think about this product</p>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-1">
+                            <input class="input nameComment" id="name" placeholder="Name">
+                        </div>
+                        <div class="slds-col slds-size_1-of-1">
+                            <input class="input email" id="email" placeholder="Email">
+                        </div>
+                        <div class="slds-col slds-size_1-of-1">
+                            <textarea class="inputArea comment" id="comment" rows="4" cols="50" maxlength="2000" placeholder="opis"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="slds-float_right buttons">
+                    <button class="button" onclick={exit}>Cancel</button>
+                    <button class="button success" onclick={buttonClick}>Add comment</button>
+                </div>
+
+            </div>
+
+            <div class="background" onclick={exit}>
+            </div>
+        </div>
+    </template>
+
+</template>

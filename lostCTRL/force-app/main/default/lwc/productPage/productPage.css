@@ -1,0 +1,201 @@
+/**
+ * Created by cezary.bubieniec on 11.10.2022.
+ */
+.product-name{
+    color: rgb(26, 26, 26);
+    font-size: 31px;
+    line-height: 40px;
+    font-weight: normal;
+    text-decoration: none;
+}
+.button-back{
+    border: 0px;
+    height: 40px;
+    width: 364px;
+    margin: 24px auto 32px;
+    font-size: 14px;
+    line-height: 20px;
+    color: rgb(255, 255, 255);
+    font-weight: normal;
+    text-decoration: none;
+    background-color: rgb(0, 130, 250);
+    border-radius: 512px;
+    padding: 8px 16px;
+}
+.container{
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999999;
+}
+.background{
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.55);;
+}
+.title{
+    font-size: 18px;
+    line-height: 24px;
+    color: rgb(26, 26, 26);
+    font-weight: bold;
+}
+.modal{
+    position: absolute !important;
+    z-index: 9999999;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 10px;
+    height: 50vh;
+    width: 50vw;
+    position: relative;
+    padding: 20px;
+}
+.exit{
+    position:absolute;
+    right: 20px;
+    top:20px;
+    cursor: pointer;
+}
+.buttons{
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+}
+.body{
+    padding-top: 20px;
+    color: rgb(77, 77, 77);
+    height: 70%;
+    overflow-y: scroll;
+}
+.button{
+    border-radius: 512px;
+    padding: 8px 16px;
+    border: none;
+    background-color: white;
+    height: 40px;
+    font-size: 14px;
+    line-height: 20px;
+    color: rgb(77, 77, 77);
+    font-weight: normal;
+    text-decoration: none;
+    width: 135px;
+}
+.danger{
+    background-color: rgb(180, 3, 28) !important;
+    color: rgb(255, 255, 255) !important;
+}
+.success{
+    background-color: rgb(17, 158, 0) !important;
+    color: rgb(255, 255, 255) !important;
+}
+.gold{
+    color: gold
+}
+.inputArea{
+    position: relative;
+        min-height: 40px;
+        display: block;
+        width: 100%;
+        border: 1px solid rgb(204, 204, 204);
+        border-radius: 20px;
+        padding: 10px 18px 0px;
+        margin-bottom: 20px;
+}
+.input{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: inline-block;
+        font-size: 14px;
+        line-height: 20px;
+        color: rgb(26, 26, 26);
+        font-weight: normal;
+        height: 40px;
+        text-align: left;
+        width: 100%;
+        text-decoration: none;
+        border-width: 1px;
+        border-style: solid;
+        border-color: rgb(204, 204, 204);
+        border-image: initial;
+        border-radius: 512px;
+        padding: 0px 16px;
+        background: padding-box rgb(255, 255, 255);
+}
+.addCommentBox{
+    text-align: center;
+    padding-top: 25px;
+    border-top: 1px solid rgb(221, 221, 221);
+}
+.rating{
+    color: rgb(112, 112, 112);
+}
+.brand-name{
+    text-decoration: none;
+    color: rgb(112, 112, 112);
+    font-weight: bold;
+    display: inline;
+}
+.specs-box{
+    padding-top: 20px;
+    padding-right:20px;
+    border-top: 1px solid rgb(221, 221, 221);
+}
+.specs{
+    padding: 5px 0;
+    font-size: 13px;
+}
+.price{
+    font-size: 26px;
+    line-height: 32px;
+    color: rgb(77, 77, 77);
+    font-weight: normal;
+    text-decoration: none;
+}
+.in-stock{
+    margin-bottom: 12px;
+    margin-left: 16px;
+    margin-top: 12px;
+    color: rgb(112, 112, 112);
+}
+.buy-box{
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 10px;
+    padding: 10px 5px;
+}
+.buy-button{
+    border-radius: 512px;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: normal;
+    text-decoration: none;
+    border: none;
+    white-space: nowrap;
+    width: 100%;
+    height: 40px;
+    padding: 0px 8px;
+    background: rgb(17, 158, 0);
+    color: rgb(255, 255, 255);
+}
+.count-buy{
+    background-color: rgb(255, 255, 255);
+    border-radius: 16px;
+    border: 1px solid rgb(204, 204, 204);
+    color: rgb(26, 26, 26);
+    cursor: pointer;
+    display: table;
+    text-align: center;
+    border-spacing: 0px;
+    border-collapse: separate;
+    height: 32px;
+    outline: none;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+.icon-buy{
+    --sds-c-icon-color-foreground: rgb(255, 255, 255) !important;
+}
