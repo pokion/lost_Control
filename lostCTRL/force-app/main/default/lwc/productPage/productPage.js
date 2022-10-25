@@ -168,12 +168,14 @@ export default class ProductPage extends NavigationMixin(LightningElement) {
         this.commentStar = event.currentTarget.dataset.count;
         let stars = this.template.querySelectorAll('.star');
 
-        for(let [index, value] of stars.entries()){
-            if(index < event.currentTarget.dataset.count){
-                value.classList.add('gold');
+        let count = 0;
+        for(let item of stars){
+            if(this.commentStar > count){
+                item.classList.add('gold');
             }else{
-                value.classList.remove('gold');
+                item.classList.remove('gold');
             }
+            count++
         }
     }
 
