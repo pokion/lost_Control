@@ -16,9 +16,10 @@ export default class NavBar extends NavigationMixin(LightningElement) {
     @wire(getCatalogs)
     async wireRecords(data,error){
         if(data.data != undefined){
-
+            console.table(data)
             this.category = JSON.parse(data.data);
         }else{
+            console.table(error);
         }
     }
 
