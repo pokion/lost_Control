@@ -42,7 +42,7 @@
                                     </div>
                                 </div>
                                 <div class="slds-col">
-                                    <input type="number" data-id={product.id} onchange={handleInputChange} value={product.amount} class="count-buy">
+                                    <input type="number" data-id={product.id} data-price={product.price} onchange={handleInputChange} value={product.amount} class="count-buy">
                                 </div>
                                 <div class="slds-col pointer" onclick={deleteHandler} data-id={product.id}>
                                     <lightning-icon size="small" icon-name="utility:delete"></lightning-icon>
@@ -69,7 +69,7 @@
                     </div>
 
                     <button class="button-order button-icon" onclick={goToDelivery}>
-                        Go to delivery <lightning-icon size="small" icon-name="utility:chevronright"></lightning-icon>
+                        Go to delivery
                     </button>
 
                 </div>

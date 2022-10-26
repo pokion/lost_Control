@@ -60,7 +60,12 @@ export default class ProductPage extends NavigationMixin(LightningElement) {
     }
 
     handleFormInputChange(event){
-        this.amount = event.target.value;
+        if(event.target.value > 0){
+            this.amount = event.target.value;
+        }else{
+            event.target.value = 1;
+            this.amount = 1;
+        }
     }
 
     /*

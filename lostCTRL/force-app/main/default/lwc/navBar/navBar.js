@@ -51,6 +51,15 @@ export default class NavBar extends NavigationMixin(LightningElement) {
         });
     }
 
+    handleLogoClick(){
+        this[NavigationMixin.Navigate]({
+            type: 'comm__namedPage',
+            attributes: {
+                name: 'Home'
+            }
+        });
+    }
+
     loginClick(event){
         let name = event.currentTarget.dataset.name;
         this[NavigationMixin.Navigate]({

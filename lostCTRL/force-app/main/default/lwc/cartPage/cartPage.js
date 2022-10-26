@@ -72,9 +72,36 @@ export default class CartPage extends NavigationMixin(LightningElement) {
     }
 
     handleInputChange(event){
-        //let value = event.currentTarget.value;
-        //TODO: zrobić żeby działało jak się zwiekszy to się zwiększy
+        let value = event.currentTarget.value;
+        if(value > 0){
+            // this.total = 0;
+            // this.totalAmount = 0;
+            // let id = event.dataset.id;
+            // console.log(id)
+            // let storage = JSON.parse(localStorage.getItem('cart'));
+            // console.log(storage);
+            // for(let item of storage){
+            //     console.log(item.id , id)
+            //     if(item.id == id){
+            //         item.amount = value;
+                    
+            //         this.total += item.amount;
+            //         this.totalAmount += item.amount * item.price;
+                    
+            //     }else{
+            //         this.total += item.amount;
+            //         this.totalAmount += item.amount * item.price;
+            //     }
+            // }
+            // console.log(this.total,this.totalAmount, 'amount')
+            // storage.totalValue = this.total;
+            // localStorage.setItem('cart', JSON.stringify(storage));
+            // this.total = this.total;
+            // this.totalAmount = this.totalAmount;
 
+        }else{
+            event.currentTarget.value = 1;
+        }
     }
 
     deleteHandler(event){
@@ -89,9 +116,9 @@ export default class CartPage extends NavigationMixin(LightningElement) {
         }
 
         this.total-= product.amount;
-        console.log(Number(product.price.replace(/\D/g,'')))
+
         this.totalAmount = Number(this.totalAmount) - (product.amount * Number(product.price.replace(/\D/g,'')));
-        console.log(product.amount,product.price,this.totalAmount)
+
 
         let newProductList = JSON.parse(JSON.stringify(this.products));
 

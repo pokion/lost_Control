@@ -9,11 +9,12 @@
     <div class="container">
 
         <div class="slds-grid slds-gutters">
-            <div class="slds-col slds-size_2-of-12">
+            <div class="slds-col slds-size_2-of-12" style="text-align: center;">
+                <p onclick={handleLogoClick} style="font-weight: Bold; line-height: 37px; cursor: pointer">Lost <span class="LogoSpan">CTRL</span></p>
             </div>
             <div class="slds-col slds-size_6-of-12 slds-align_absolute-center">
                 <div class="boxSearch slds-grid slds-gutters">
-                    <div class="search slds-col slds-size_10-of-12">
+                    <div class="search slds-col slds-size_8-of-12">
                         <input type="search" placeholder="What are you looking for?" value={searchString} onchange={handleFormInputChange}>
                     </div>
                     <div class="searchButton slds-col slds-size_2-of-12 slds-align_absolute-center" onclick={handleClick}>
