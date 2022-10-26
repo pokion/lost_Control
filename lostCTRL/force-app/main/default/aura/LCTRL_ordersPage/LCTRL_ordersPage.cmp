@@ -1,0 +1,38 @@
+<aura:component controller="LCTRL_OrderService" implements="flexipage:availableForAllPageTypes">
+
+    <aura:attribute name="columns" type="List" />
+    <aura:attribute name="data" type="List" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="rowaction" event="c:rowaction" action="{!c.handleRowAction}"/>
+    <aura:attribute name="isview" type="Boolean" default="false" />
+    <aura:attribute name="selectedOrder" type="Object" />
+
+    <div class="slds-card">
+        <div class="datatable">
+            <c.LCTRL_DatatableWithPagination
+                    columns="{!v.columns}"
+                    data="{!v.data}"
+            ></c.LCTRL_DatatableWithPagination>
+        </div>
+    </div>
+
+    <aura:if isTrue="{!v.isview}" >
+        <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <div class="slds-modal__header">
+                    <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Order {!v.electedOrder.Name}</h1>
+                </div>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <div class="slds-grid slds-wrap">
+
+                    </div>
+                </div>
+                <div class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick="{!c.modalSwitch}" aria-label="Cancel and close">Cancel</button>
+                </div>
+
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+    </aura:if>
+</aura:component>	
