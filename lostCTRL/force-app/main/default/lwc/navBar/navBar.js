@@ -7,6 +7,7 @@ import { NavigationMixin } from 'lightning/navigation';
 import { loadScript } from 'lightning/platformResourceLoader';
 import getCatalogs from '@salesforce/apex/LCTRL_CatalogService.getCatalogs';
 
+
 export default class NavBar extends NavigationMixin(LightningElement) {
     searchString = '';
     totalCount;

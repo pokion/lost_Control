@@ -26,7 +26,7 @@ public with sharing class LCTRL_PartService {
     public static String deletePart(String id){
         Database.DeleteResult remove = Database.delete(id);
 
-        return JSON.serialize(remove.getErrors());
+        return JSON.serialize(remove);
     }
 
     @AuraEnabled

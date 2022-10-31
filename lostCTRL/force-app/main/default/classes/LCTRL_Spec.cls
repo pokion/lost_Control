@@ -20,4 +20,13 @@ public with sharing class LCTRL_Spec {
     public LCTRL_SpecItem getValue(){
         return value;
     }
+
+    public PartsToProducts__c getPartC(){
+        PartsToProducts__c partC = new PartsToProducts__c();
+        partC.Part__r = new SpecPart__c();
+        partC.Name = this.value.name;
+
+
+        return partC;
+    }
 }

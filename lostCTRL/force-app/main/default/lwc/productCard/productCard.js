@@ -20,6 +20,7 @@ export default class ProductCard extends NavigationMixin(LightningElement) {
     get getImageUrl(){
 
         if(this.productImageUrl[0] != null){
+            //https://britenet94-dev-ed.my.salesforce.com/sfc/p/7Q000006GKFr/a/7Q000000cI5j/1ps7vIHydKNPSt0GMLsGUtu9nGhQDE03liDUHRoW2dE
             return '/sfsites/c/sfc/servlet.shepherd/version/download/'+ this.productImageUrl[0].image;
         }else{
             return '/sfc/servlet.shepherd/version/download/';
