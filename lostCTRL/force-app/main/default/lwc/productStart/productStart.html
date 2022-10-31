@@ -1,0 +1,21 @@
+<!--
+ - Created by cezary.bubieniec on 10.10.2022.
+ -->
+
+<!-- Product Start -->
+<template>
+
+    <div class="slds-grid slds-wrap box">
+        <template for:each={records} for:item="record">
+            <div class="slds-col" style="margin-bottom: 20px;" key={record.name}>
+                <c-product-card product-name={record.name}
+                                product-image-url={record.images}
+                                product-price={record.price}
+                                product-id={record.id}
+                >
+                </c-product-card>
+            </div>
+        </template>
+    </div>
+
+</template>

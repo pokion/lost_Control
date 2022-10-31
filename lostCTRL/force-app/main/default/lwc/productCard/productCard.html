@@ -1,0 +1,14 @@
+<!--
+ - Created by cezary.bubieniec on 07.10.2022.
+ -->
+
+<!-- Product Card -->
+<template>
+    <div class="product-card" style="margin: auto" onclick={handleClick}>
+        <div class="product-image slds-align_absolute-center">
+            <img src={getImageUrl} />
+        </div>
+        <span class="product-name">{productName}</span>
+        <span class="product-price">{getPrice}</span>
+    </div>
+</template>

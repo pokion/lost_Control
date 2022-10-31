@@ -1,0 +1,34 @@
+<!--
+ - Created by cezary.bubieniec on 24.09.2022.
+ -->
+
+<aura:component description="LCTRL_LookupFieldCustom">
+    <aura:attribute name="label" type="String" />
+    <aura:attribute name="labelAddOption" type="String" />
+    <aura:attribute name="data" type="List" />
+    <aura:attribute name="value" type="String" />
+    <aura:attribute name="lookupResult" type="Boolean" default="false" />
+    <aura:attribute name="icon" type="String" />
+    <aura:attribute name="disabled" type="boolean" />
+
+    <aura:registerEvent name="newSelectedItem" type="c:selectedItem"/>
+
+    <lightning:input label="{!v.label}" onblur="{!c.lookupResultHide}" disabled="{!v.disabled}" onfocus="{!c.lookupResultShow}" value="{!v.value.Name}" type="search"/>
+
+    <aura:if isTrue="{!v.lookupResult}">
+        <div class="resultBox slds-p-vertical_xx-small" style="width:100%">
+
+            <aura:iteration var="item" items="{!v.data}" indexVar="index">
+                <div class="slds-p-horizontal_medium resultItem slds-p-vertical_xx-small slds-grid slds-grid" data-item-index="{!index}" onclick="{!c.selectedItem}">
+                    <div class="slds-col slds-size_2-of-12">
+                        <lightning:icon size="small" iconName="{!v.icon}" />
+                    </div>
+                    <div class="slds-col slds-size_10-of-12">
+                        <p style="padding-left: 10px">{!item.Name}</p>
+                    </div>
+                </div>
+            </aura:iteration>
+
+        </div>
+    </aura:if>
+</aura:component>
