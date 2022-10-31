@@ -79,4 +79,10 @@ public with sharing class LCTRL_Product {
     public void setSpecs(List<LCTRL_Spec> specs){
         this.specs = specs;
     }
+
+    public Product2 getObj(){
+        Product2 newProduct = new Product2();
+        newProduct.Name = this.name;
+        return newProduct;
+    }
 }

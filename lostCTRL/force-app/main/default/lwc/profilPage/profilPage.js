@@ -64,7 +64,9 @@ export default class ProfilPage extends LightningElement {
                 })
             }
         }
-        return retu
+
+        let sortArray = retu.sort().reverse();
+        return sortArray;
     }
 
     exit(){

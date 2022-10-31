@@ -20,15 +20,58 @@
         <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open">
             <div class="slds-modal__container">
                 <div class="slds-modal__header">
-                    <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Order {!v.electedOrder.Name}</h1>
+                    <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate" >Order {!v.selectedOrder.Name}</h1>
                 </div>
                 <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-                    <div class="slds-grid slds-wrap">
 
-                    </div>
+                        <lightning:recordViewForm recordId="{!v.selectedOrder.Adress__c}" objectApiName="Order__c">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_2-of-4" style="text-align: center;">
+                                    <lightning:outputField fieldName="FirstName__c" />
+                                </div>
+                                <div class="slds-col slds-size_2-of-4" style="text-align: center;">
+                                    <lightning:outputField fieldName="LastName__c" />
+                                </div>
+                                <div class="slds-col slds-size_2-of-4" style="text-align: center;">
+                                    <lightning:outputField fieldName="PhoneNumber__c" />
+                                </div>
+                                <div class="slds-col slds-size_2-of-4" style="text-align: center;">
+                                    <lightning:outputField fieldName="Email__c" />
+                                </div>
+                                <div class="slds-col slds-size_2-of-4" style="text-align: center;">
+                                    <lightning:outputField fieldName="Country__c" />
+                                </div>
+                                <div class="slds-col slds-size_2-of-4" style="text-align: center;">
+                                    <lightning:outputField fieldName="City__c" />
+                                </div>
+                                <div class="slds-col slds-size_1-of-2" style="text-align: center;">
+                                    <lightning:outputField fieldName="State__c" />
+                                </div>
+                                <div class="slds-col slds-size_1-of-2" style="text-align: center;">
+                                    <lightning:outputField fieldName="Street__c" />
+                                </div>
+                                <div class="slds-col slds-size_1-of-1" style="text-align: center;">
+                                    <lightning:outputField fieldName="ZipCode__c" />
+                                </div>
+                            </div>
+                        </lightning:recordViewForm>
+                        <lightning:recordViewForm recordId="{!v.selectedOrder.Product__c}" objectApiName="Product2">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-3" style="text-align: center;">
+                                    <lightning:outputField fieldName="Id" />
+                                </div>
+                                <div class="slds-col slds-size_1-of-3" style="text-align: center;">
+                                    <lightning:outputField fieldName="Name" />
+                                </div>
+                                <div class="slds-col slds-size_1-of-3" style="text-align: center;">
+                                    <lightning:outputField fieldName="Quantity__c" />
+                                </div>
+                            </div>
+                        </lightning:recordViewForm>
+
                 </div>
                 <div class="slds-modal__footer">
-                    <button class="slds-button slds-button_neutral" onclick="{!c.modalSwitch}" aria-label="Cancel and close">Cancel</button>
+                    <button class="slds-button slds-button_neutral" onclick="{!c.modalExit}" aria-label="Cancel and close">Cancel</button>
                 </div>
 
             </div>

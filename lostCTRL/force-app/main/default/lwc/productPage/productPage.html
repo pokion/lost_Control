@@ -48,7 +48,7 @@
                             </div>
                         </div>
                         <div class="slds-col">
-                            <div class="buy-box">
+                            <div class="buy-box" style="min-width: 250px;">
                                 <div class="slds-clearfix" style="padding-bottom: 10px;">
                                     <div class="slds-float_right">
                                         <span class="price">{getPrice}</span>
@@ -58,7 +58,6 @@
                                 <div class="slds-grid slds-gutters">
                                     <div class="slds-col slds-size_3-of-12">
                                         <input type="number" onchange={handleFormInputChange} value="1" class="count-buy">
-<!--                                        <c-inpur-number value="1"></c-inpur-number>-->
                                     </div>
                                     <div class="slds-col slds-size_9-of-12">
                                         <button class="buy-button icon-buy" onclick={handleBuyClick}> <lightning-icon icon-name="utility:cart" variant="inverse" size="small" class="slds-p-left_small"></lightning-icon> Add to cart </button>
