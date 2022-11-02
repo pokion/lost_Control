@@ -27,7 +27,7 @@ public with sharing class LCTRL_Category {
         this.catalog = catalog;
     }
 
-    public String getCatalog(){
+    public LCTRL_Catalog getCatalog(){
         return this.catalog;
     }
 }
