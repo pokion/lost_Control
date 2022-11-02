@@ -64,14 +64,13 @@ jobs:
                   sfdx scanner:run --format sarif --target './**/*.cls' --category "Design,Best Practices,Performance" --outfile 'apexScanResults.sarif'  
                   cd ..
 
-            - name: Upload SARIF file
-              uses: github/codeql-action/upload-sarif@v1
-              with:
-                sarif_file: changed-sources/apexScanResults.sarif
-
-
-            - name: 'Check-only deploy delta changes - run all tests'
-              run: |
-                  sfdx force:source:deploy -p "changed-sources/lostCTRL/force-app" --checkonly --testlevel RunLocalTests  --json
-            - name: 'Deploy destructive changes (if any)'
-              run: sfdx force:mdapi:deploy -d "changed-sources/destructiveChanges" --checkonly --ignorewarnings 
+            - name: 'Convert Metadata'
+              run: sfdx force:source:convert --rootdir=force-app --outputdir=convert
+            - name: 'Debug Convert'
+              run: dir convert
+            - name: 'Debug Convert Classes'
+              run: dir convert/classes
+            - name: 'Debug Convert Package.xml'
+              run: cat convert/package.xml
+            - name: 'Run Test on Metadata'
+              run: sfdx force:mdapi:deploy --deploydir=convert --testlevel=RunLocalTests --checkonly -w 60 
