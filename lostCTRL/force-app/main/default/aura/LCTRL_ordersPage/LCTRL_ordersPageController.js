@@ -19,8 +19,7 @@
             {label: 'Order Number', fieldName: 'Name', type: 'text'},
             {label: 'Quantity', fieldName: 'Quantity__c', type: 'text'},
             {type: 'action', typeAttributes: {rowActions: [
-                {label: 'View', name: 'view'},
-                {label: 'Edit', name: 'edit'}
+                {label: 'View', name: 'view'}
             ]}}
         ]);
     },
@@ -32,6 +31,7 @@
         switch (action.name){
             case 'view':
                 cmp.set('v.selectedOrder', row);
+                cmp.set('v.isview', true);
                 break;
 
             case 'edit':
@@ -42,5 +42,8 @@
 
     modalSwitch: function(cmp,event,helper){
         cmp.set('v.isview', true);
+    },
+    modalExit: function(cmp){
+        cmp.set('v.isview', false);
     }
 })

@@ -12,6 +12,7 @@ export default class ProductStart extends LightningElement {
     wirerecords(data,error){
         if(data.data){
             this.records = JSON.parse(data.data);
+            console.table(this.records);
         }else{
             console.log(error)
         }

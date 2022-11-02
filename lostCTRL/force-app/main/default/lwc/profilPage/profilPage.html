@@ -33,7 +33,7 @@
                                         <th scope="col">Product Name</th>
                                         <th scope="col">Quantity</th>
                                         <th scope="col">Order Date</th>
-                                        <th scope="col">Actions</th>
+                                        <th scope="col">Complaint</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -45,7 +45,7 @@
                                         </tr>
                                         <template for:each={order.value} for:item="item">
                                             <tr key={item}>
-                                                <td class="noBorder">{item.Product__r.Name}</td>
+                                                <td class="noBorder" style="width: 491px;">{item.Product__r.Name}</td>
                                                 <td class="noBorder centerText">{item.Quantity__c}
                                                 </td>
                                             </tr>

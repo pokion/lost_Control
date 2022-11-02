@@ -5,9 +5,19 @@
 public with sharing class LCTRL_Image {
     private String image;
     private Boolean isMain;
+    private Blob base64;
+    private String type;
 
     public LCTRL_Image(){
 
+    }
+
+    public void setBase(Blob base){
+        this.base64 = base;
+    }
+
+    public void setType(String type){
+        this.type = type;
     }
 
     public void setImage(String image){
