@@ -73,5 +73,3 @@ jobs:
             - name: 'Check-only deploy delta changes - run all tests'
               run: |
                   sfdx force:source:deploy -p "changed-sources/lostCTRL/force-app" --checkonly --testlevel RunLocalTests  --json
-            - name: 'Deploy destructive changes (if any)'
-              run: sfdx force:mdapi:deploy -d "changed-sources/destructiveChanges" --checkonly --ignorewarnings 
