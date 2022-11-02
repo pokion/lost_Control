@@ -8,7 +8,7 @@ public class LCTRL_CatalogServiceTest {
             ProductCatalog catalog = new ProductCatalog();
             catalog.Name = 'Laptop';
             catalogs.add(catalog);
-        }
+        } 
         insert catalogs;
         Test.startTest();
         String catalogsReturned = LCTRL_CatalogService.getCatalogs();
