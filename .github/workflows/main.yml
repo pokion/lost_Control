@@ -1,8 +1,7 @@
 name: Deploy
 on:
   pull_request:
-    types: [opened, synchronize]
-    branches: [ main ]
+    branches: main
     paths:
             - 'force-app/**'
 
