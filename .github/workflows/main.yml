@@ -23,16 +23,6 @@ jobs:
               with:
                 fetch-depth: 0
             
-
-            - name: 'Read PR Body'
-              env:
-                PR_BODY: ${{github.event.pull_request.body}}
-
-              run: |
-                  echo $PR_BODY > ./pr_body.txt
-                  node ./lostCTRL/parsePR.js              
-                  TESTS=$(cat testsToRun.txt)       
-                  echo "APEX_TESTS=$TESTS" >> $GITHUB_ENV
                   
             - name: 'Install Salesforce CLI'
               run: |
@@ -43,7 +33,7 @@ jobs:
                   ~/sfdx/bin/sfdx version
 
             - name: 'Installing sfdx git delta'
-              run: | 
+              run: |
                   echo y | sfdx plugins:install sfdx-git-delta
                   sfdx plugins 
 
@@ -63,7 +53,7 @@ jobs:
               run: sfdx auth:sfdxurl:store -f ./SFDX_INTEGRATION_URL.txt -s -a integration
 
             - name: 'Create delta packages for new, modified or deleted metadata'
-              run: | 
+              run: |
                   mkdir changed-sources
                   sfdx sgd:source:delta --to "HEAD" --from "HEAD^" --output changed-sources/ --generate-delta --source force-app/ 
 
@@ -80,12 +70,10 @@ jobs:
 
 
             - name: 'Check-only deploy delta changes - run specified tests'
-              if: ${{ env.APEX_TESTS != 'all' }}
               run: |
                   echo ${{env.APEX_TESTS}}
                   sfdx force:source:deploy -p "changed-sources/force-app" --checkonly --testlevel RunSpecifiedTests --runtests ${{env.APEX_TESTS}} --json
             - name: 'Check-only deploy delta changes - run all tests'
-              if: ${{ env.APEX_TESTS == 'all' }}
               run: |
                   sfdx force:source:deploy -p "changed-sources/force-app" --checkonly --testlevel RunLocalTests  --json
             - name: 'Deploy destructive changes (if any)'
