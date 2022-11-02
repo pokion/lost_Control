@@ -6,17 +6,17 @@ public with sharing class LCTRL_CategoryBuilder {
     }
 
     public LCTRL_CategoryBuilder setName(String name){
-        this.image.setName(name);
+        this.category.setName(name);
         return this;
     }
 
     public LCTRL_CategoryBuilder setId(String Id){
-        this.image.setId(Id);
+        this.category.setId(Id);
         return this;
     }
 
-    public LCTRL_CategoryBuilder setCatalog(String catalog){
-        this.image.setCatalog(catalog);
+    public LCTRL_CategoryBuilder setCatalog(LCTRL_Catalog catalog){
+        this.category.setCatalog(catalog);
         return this;
     }
 
