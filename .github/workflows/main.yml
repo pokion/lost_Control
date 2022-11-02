@@ -5,7 +5,7 @@ on:
       types: [opened, synchronize]
       branches: [ main ]
       paths:
-        - 'LostCTRL/force-app/**'
+        - 'lostCTRL/force-app/**'
             
 
 jobs:
