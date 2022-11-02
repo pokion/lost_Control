@@ -1,14 +1,10 @@
 name: Deploy
 on:
-  push:
+  pull_request:
+    types: [opened, synchronize]
     branches: [ main ]
     paths:
             - 'force-app/**'
-    pull_request:
-      types: [opened, synchronize]
-      branches: [ main ]
-      paths:
-              - 'force-app/**'
 
 jobs:
   build:
