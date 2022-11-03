@@ -60,7 +60,7 @@ jobs:
 
 
             - name: 'Convert Metadata'
-              run: sfdx force:source:convert --rootdir=./lostCTRL --outputdir=convert
+              run: sfdx force:source:convert -d =../lostCTRL
             - name: 'Debug Convert'
               run: dir convert
             - name: 'Debug Convert Classes'
