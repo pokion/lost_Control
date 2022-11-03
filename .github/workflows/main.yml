@@ -54,7 +54,7 @@ jobs:
               run: sfdx auth:sfdxurl:store -f ./SFDX_INTEGRATION_URL.txt -s -a integration
 
             - name: 'Convert Metadata'
-              run: sfdx force:source:convert --rootdir=lostCTRL/force-app --outputdir=convert
+              run: dir
             - name: 'Debug Convert'
               run: dir convert
             - name: 'Debug Convert Classes'
