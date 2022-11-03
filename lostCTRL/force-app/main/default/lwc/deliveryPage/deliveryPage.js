@@ -65,6 +65,8 @@ export default class DeliveryPage extends NavigationMixin(LightningElement) {
             }
         }
 
+        
+
         if(!isEmpty){
             console.log(JSON.stringify(this.address));
             saveOrder({ JSONorder: JSON.stringify(this.address) })
