@@ -36,9 +36,11 @@ jobs:
           shell: bash
           run: 'echo ${{secrets.SFDX_URL_PROD}} > SFDX_PROD'
         - name: 'go to lostCTRL folder'
-          run: cd lostCTRL
+          run: cd lostCTRL/
         - name: 'Convert Metadata'
-          run: sfdx force:source:convert --rootdir=force-app --outputdir=convert
+          run: |
+            dir
+            sfdx force:source:convert --rootdir=force-app --outputdir=convert
         - name: 'Debug Convert'
           run: dir convert
         - name: 'Debug Convert Classes'
