@@ -69,7 +69,7 @@ public with sharing class LCTRL_ProductHandler {
             junction.Parts__c = part.Id;
             junction.Product__c = product.Id;
 
-            partsJunction.add(junction); 
+            partsJunction.add(junction);
         }
 
         return new List<SObject>((List<SObject>) partsJunction);
