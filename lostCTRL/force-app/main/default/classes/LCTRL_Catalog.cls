@@ -2,7 +2,7 @@ public with sharing class LCTRL_Catalog {
     private String Name;
     private String Id;
 
-    public LCTRL_Catalog(){
+    public LCTRL_Catalog() {
 
     }
 

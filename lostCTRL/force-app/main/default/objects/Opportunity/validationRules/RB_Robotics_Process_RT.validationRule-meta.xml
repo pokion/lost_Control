@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>RB_Robotics_Process_RT</fullName>
-    <active>true</active>
-    <errorConditionFormula>IF(( Amount &gt; 100000 &amp;&amp; Approved__c &lt;&gt; True &amp;&amp; ISPICKVAL( StageName,&apos;Closed Won&apos;) ),True,False)</errorConditionFormula>
-    <errorMessage>lkkk</errorMessage>
-</ValidationRule>
