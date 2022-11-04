@@ -39,13 +39,21 @@ jobs:
           run: cd lostCTRL/
         - name: 'Convert Metadata'
           run: |
-            dir
+            cd lostCTRL/
             sfdx force:source:convert --rootdir=force-app --outputdir=convert
         - name: 'Debug Convert'
-          run: dir convert
+          run: |
+            cd lostCTRL/
+            dir convert
         - name: 'Debug Convert Classes'
-          run: dir convert/classes
+          run: |
+            cd lostCTRL/
+            dir convert/classes
         - name: 'Debug Convert Package.xml'
-          run: cat convert/package.xml
+          run: |
+            cd lostCTRL/
+            cat convert/package.xml
         - name: 'Run Test on Metadata'
-          run: sfdx force:mdapi:deploy --deploydir=convert --testlevel=RunLocalTests --checkonly -w 60 
+          run: |
+            cd lostCTRL/
+            sfdx force:mdapi:deploy --deploydir=convert --testlevel=RunLocalTests --checkonly -w 60 
