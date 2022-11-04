@@ -35,18 +35,15 @@ jobs:
         - name: 'Populate auth file with SFDX_URL_PROD secret'
           shell: bash
           run: 'echo ${{secrets.SFDX_URL_PROD}} > SFDX_PROD'
-
-        - name: 'Fetch Repository'
-          run: |
-            git remote set-branches origin '*'
-            git fetch
-            git branch
-
-        - name: Get List of Modified Metadata
-          run: sfdx sfpowerkit:project:diff --revisionfrom lostCTRL/ --output ./diff_output
-
-        - name: 'Authenticate to Production Org'
-          run: sfdx auth:sfdxurl:store -f SFDX_PROD -s -a production
-
-        - name: 'Run validation deployment'
-          run: sfdx force:source:deploy -p ./diff_output/force-app/main/default --checkonly --testlevel RunLocalTests
+        - name: 'go to lostCTRL folder'
+          run: cd lostCTRL
+        - name: 'Convert Metadata'
+          run: sfdx force:source:convert --rootdir=force-app --outputdir=convert
+        - name: 'Debug Convert'
+          run: dir convert
+        - name: 'Debug Convert Classes'
+          run: dir convert/classes
+        - name: 'Debug Convert Package.xml'
+          run: cat convert/package.xml
+        - name: 'Run Test on Metadata'
+          run: sfdx force:mdapi:deploy --deploydir=convert --testlevel=RunLocalTests --checkonly -w 60 
