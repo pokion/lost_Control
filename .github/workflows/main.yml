@@ -56,4 +56,4 @@ jobs:
         - name: 'Run Test on Metadata'
           run: |
             cd lostCTRL/
-            sfdx force:mdapi:deploy --deploydir=convert --testlevel=RunLocalTests --checkonly -w 60 
+            sfdx force:mdapi:deploy --deploydir=convert --testlevel=RunLocalTests --checkonly -w 60 -u cezary.bubieniec@britenet.com.pl
