@@ -14,8 +14,6 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v2
-
-
         - uses: actions/setup-node@v1
           with:
             node-version: '>=14'
@@ -34,9 +32,9 @@ jobs:
 
         - name: 'Populate auth file with SFDX_URL_PROD secret'
           shell: bash
-          run: 'echo ${{secrets.SFDX_URL_PROD}} > SFDX_PROD'
-        - name: 'go to lostCTRL folder'
-          run: cd lostCTRL/
+          run: 'echo ${{secrets.SFDX_URL_PROD}} > ./AUTHORIZED_URL.txt'
+        - name: 'Authenticate to Integration Org'
+          run: sfdx auth:sfdxurl:store -f ./AUTHORIZED_URL.txt -s -a integration
         - name: 'Convert Metadata'
           run: |
             cd lostCTRL/
