@@ -42,7 +42,7 @@ public class Order{
     }
     class cls_images {
         public boolean isMain;
-        public String image;	//0687Q000004sVBcQAM
+        public String image;	
     }
     class cls_category {
         public cls_attributes attributes;
