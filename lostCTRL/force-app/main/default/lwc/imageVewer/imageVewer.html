@@ -1,0 +1,25 @@
+<!--
+ - Created by cezary.bubieniec on 11.10.2022.
+ -->
+
+<!-- Image Vewer -->
+<template>
+
+    <template if:true={isLoaded}>
+        <div class="images-box">
+            <div class="image-big-preview">
+                <img src={mainImage}>
+            </div>
+            <div class="rest-of-images slds-grid slds-wrap">
+                <template for:each={images} for:item="image">
+                    <div class="slds-col" key={image}>
+                        <div class="small-image" data-image={image} onmouseover={handleMouseHover}>
+                            <img src={image}>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </template>
+
+</template>
