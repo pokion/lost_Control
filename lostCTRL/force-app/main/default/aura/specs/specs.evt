@@ -1,0 +1,7 @@
+<!--
+ - Created by cezary.bubieniec on 27.09.2022.
+ -->
+
+<aura:event type="APPLICATION" description="specs">
+    <aura:attribute name="specifications" type="List" />
+</aura:event>
