@@ -1,0 +1,7 @@
+<!--
+ - Created by cezary.bubieniec on 07.10.2022.
+ -->
+
+<aura:event type="COMPONENT" description="selectedsObjectRecordEvent">
+    <aura:attribute name="recordByEvent" type="sObject"/>
+</aura:event>
