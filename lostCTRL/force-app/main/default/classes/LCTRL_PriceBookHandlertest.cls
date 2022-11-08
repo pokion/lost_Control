@@ -18,20 +18,4 @@ public class LCTRL_PriceBookHandlertest {
 
         
     }
-
-    @IsTest(SeeAllData=true)
-    static void priceBookPositive(){
-        Integer numberOfAccount = 4;
-        List<Product2> omeProduct = [SELECT Id FROM Product2 LIMIT :numberOfAccount];
-        Set<Id> ids = new Set<Id>();
-        for(Product2 prod : omeProduct){
-            ids.add(prod.Id);
-        }
-
-        Test.startTest();
-        Map<Id, PricebookEntry> mapPriceBook = LCTRL_PriceBookHandler.getMapOfPriceBooksByProductsIds(ids);
-        Test.stopTest();
-        
-        System.assertEquals(numberOfAccount, mapPriceBook.size(), 'Should be equal to numberOfAccount variable.');
-    }
 }

@@ -1,0 +1,7 @@
+<!--
+ - Created by cezary.bubieniec on 26.09.2022.
+ -->
+
+<aura:event type="APPLICATION" description="selectedItem">
+    <aura:attribute name="partSelected" type="Object" />
+</aura:event>

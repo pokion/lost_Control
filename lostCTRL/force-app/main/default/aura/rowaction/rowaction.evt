@@ -1,0 +1,8 @@
+<!--
+ - Created by cezary.bubieniec on 03.10.2022.
+ -->
+
+<aura:event type="APPLICATION" description="rowaction">
+    <aura:attribute name="row" type="Object"/>
+    <aura:attribute name="action" type="Object"/>
+</aura:event>

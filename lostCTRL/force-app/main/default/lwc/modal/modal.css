@@ -1,0 +1,77 @@
+/**
+ * Created by cezary.bubieniec on 12.10.2022.
+ */
+body{
+    overflow-y: hidden !important; /* Hide vertical scrollbar */
+    overflow-x: hidden !important;
+}
+.container{
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999999;
+}
+.background{
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.55);;
+}
+.title{
+    font-size: 18px;
+    line-height: 24px;
+    color: rgb(26, 26, 26);
+    font-weight: bold;
+}
+.modal{
+    position: absolute !important;
+    z-index: 9999999;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 10px;
+    height: 50vh;
+    width: 50vw;
+    position: relative;
+    padding: 20px;
+}
+.exit{
+    position:absolute;
+    right: 20px;
+    top:20px;
+    cursor: pointer;
+}
+.buttons{
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+}
+.body{
+    padding-top: 20px;
+    color: rgb(77, 77, 77);
+    height: 70%;
+    overflow-y: scroll;
+}
+.button{
+    border-radius: 512px;
+    padding: 8px 16px;
+    border: none;
+    background-color: white;
+    height: 40px;
+    font-size: 14px;
+    line-height: 20px;
+    color: rgb(77, 77, 77);
+    font-weight: normal;
+    text-decoration: none;
+    width: 135px;
+}
+.danger{
+    background-color: rgb(180, 3, 28) !important;
+    color: rgb(255, 255, 255) !important;
+}
+.success{
+    background-color: rgb(17, 158, 0) !important;
+    color: rgb(255, 255, 255) !important;
+}

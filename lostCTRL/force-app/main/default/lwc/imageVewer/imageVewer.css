@@ -1,0 +1,25 @@
+/**
+ * Created by cezary.bubieniec on 11.10.2022.
+ */
+.image-big-preview>img{
+    width: 100%;
+    object-fit: contain;
+}
+.small-image{
+    height: 60px;
+    width: 70px;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid rgb(221, 221, 221);
+    margin-top: 10px
+}
+.small-image:hover{
+    border: 1px solid black;
+    cursor: pointer;
+}
+.selected{
+    border: 1px solid black;
+}
+.small-image>img{
+    object-fit: scale-down;
+}

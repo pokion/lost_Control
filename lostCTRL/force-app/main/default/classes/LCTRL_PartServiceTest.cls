@@ -44,4 +44,39 @@ public class LCTRL_PartServiceTest {
         System.assertEquals(JSON.serialize(specs), dataReturn, 'Data return neet to match.');
     }
 
+    @IsTest 
+    static void savePart(){
+        ProductCatalog catalog = new ProductCatalog();
+        catalog.name = 'test';
+        Database.SaveResult saveCat = Database.insert(catalog);
+        SpecPart__c part = new SpecPart__c();
+        part.Name__c ='asd';
+        part.Catalog__c = saveCat.getId();
+        Database.SaveResult saveRes = Database.insert(part);
+
+        Test.startTest();
+        String res = LCTRL_PartService.savePart(saveRes.getId(), 'value');
+        Test.stopTest();
+    }
+
+    @IsTest
+    static void deletePart(){
+        ProductCatalog catalog = new ProductCatalog();
+        catalog.name = 'test';
+        Database.SaveResult saveCat = Database.insert(catalog);
+        SpecPart__c part = new SpecPart__c();
+        part.Name__c ='asd';
+        part.Catalog__c = saveCat.getId();
+        Database.SaveResult saveRes = Database.insert(part);
+        PartsToProducts__c newPart = new PartsToProducts__c();
+        newPart.Part__c = saveRes.getId();
+        newPart.Name = 'value';
+        Database.UpsertResult result = Database.upsert(newPart);
+
+        Test.startTest();
+        String rr = LCTRL_PartService.deletePart(result.getId());
+        Test.stopTest();
+
+    }
+
 }
