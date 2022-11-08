@@ -9,46 +9,46 @@ public with sharing class LCTRL_ProductHandler {
         public Database.UpsertResult[] errors;
     }
 
-    // public static Response create(LCTRL_ProductWrapper product){
+    public static Response create(LCTRL_ProductWrapper product){
 
-    //     Database.UpsertResult productCreated = createProduct(product);
-    //     Product2 newProduct = new Product2();
-    //     if(productCreated.isSuccess()){
-    //         newProduct.Id = productCreated.getId();
-    //         Database.UpsertResult[] issues;
+        Database.UpsertResult productCreated = createProduct(product);
+        Product2 newProduct = new Product2();
+        if(productCreated.isSuccess()){
+            newProduct.Id = productCreated.getId();
+            Database.UpsertResult[] issues;
 
-    //         List<SObject> objects = new List<SObject>();
+            List<SObject> objects = new List<SObject>();
 
-    //         objects.addAll(appendCategory(product.category, newProduct));
-    //         objects.addAll(appendSpecs(product.specs, newProduct));
-    //         objects.addAll(setPrice(product.price, newProduct));
-    //         objects.addAll(setImages(product.images, newProduct));
+            objects.addAll(appendCategory(product.category, newProduct));
+            objects.addAll(appendSpecs(product.specs, newProduct));
+            objects.addAll(setPrice(product.price, newProduct));
+            objects.addAll(setImages(product.images, newProduct));
 
-    //         issues = Database.upsert(objects, false);
-    //         Response response = new Response();
-    //         response.status = true;
+            issues = Database.upsert(objects, false);
+            Response response = new Response();
+            response.status = true;
 
-    //         for(Database.UpsertResult issue : issues){
-    //             System.debug(issue.isSuccess());
-    //             if (!issue.isSuccess()) {
-    //                 response.status = false;
-    //             }
-    //         }
+            for(Database.UpsertResult issue : issues){
+                System.debug(issue.isSuccess());
+                if (!issue.isSuccess()) {
+                    response.status = false;
+                }
+            }
 
-    //         response.errors = issues;
+            response.errors = issues;
 
-    //         return response;
+            return response;
 
-    //     }else{
-    //         Response res = new Response();
-    //         res.status = false;
-    //         List<Database.UpsertResult> issue = new List<Database.UpsertResult>();
-    //         issue.add(productCreated);
-    //         res.errors = issue;
+        }else{
+            Response res = new Response();
+            res.status = false;
+            List<Database.UpsertResult> issue = new List<Database.UpsertResult>();
+            issue.add(productCreated);
+            res.errors = issue;
 
-    //         return res;
-    //     }
-    // }
+            return res;
+        }
+    }
 
     public static List<SObject> appendCategory(ProductCategory category, Product2 product){
         ProductCategoryProduct categoryJunction = new ProductCategoryProduct();
