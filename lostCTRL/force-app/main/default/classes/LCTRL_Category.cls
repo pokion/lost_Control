@@ -30,4 +30,11 @@ public with sharing class LCTRL_Category {
     public LCTRL_Catalog getCatalog(){
         return this.catalog;
     }
+
+    public ProductCategory getObj(){
+        ProductCategory category = new ProductCategory();
+        category.name = this.name;
+        category.CatalogId = this.catalog.getId();
+        return category;
+    }
 }

@@ -30,6 +30,7 @@ public class LCTRL_ProductTest {
         Test.startTest();
         LCTRL_Product product = new LCTRL_ProductBuilder().setCategory(new ProductCategory()).setDescription('asd')
         .setId('asd').setImages(new List<LCTRL_Image>()).setName('asd').setPrice(2.99).setQuantity(12).setSpecs(new List<LCTRL_Spec>()).getProduct();
+
         Test.stopTest();
     }
 }
