@@ -7,6 +7,7 @@ public class LCTRL_ImageTest {
         String type = 'typeTest';
         String imageName = 'nameTest';
         Boolean isMain = true;
+        Blob bl = Blob.valueOf('adsasd');
         
 
         Test.startTest();
@@ -14,6 +15,7 @@ public class LCTRL_ImageTest {
         image.setImage(imageName);
         image.setMain(isMain);
         image.setType(type);
+        image.setBase(bl);
         String typeReturn = image.getImage();
         Boolean main = image.getMain();
         Test.stopTest();

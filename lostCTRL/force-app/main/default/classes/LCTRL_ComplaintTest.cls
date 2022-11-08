@@ -1,7 +1,7 @@
-@isTest
+@IsTest
 public class LCTRL_ComplaintTest {
     
-    @istest 
+    @IsTest 
     static void complaintPositive(){
         Test.startTest();
         String result = LCTRL_Complaint.createComplaint('New', 'Web', 'email@email.com', 'name', 'phone', 'subject', 'description');
