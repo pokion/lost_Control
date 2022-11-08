@@ -117,7 +117,7 @@ public with sharing class LCTRL_ProductService {
     public static String createNewProduct(String productJSON){
         try{
             LCTRL_ProductWrapper product = (LCTRL_ProductWrapper) JSON.deserialize(productJSON, LCTRL_ProductWrapper.class);
-            return JSON.serialize(LCTRL_ProductHandler.create(product));
+            return JSON.serialize(LCTRL_ProductHandler.create());
         } catch (Exception e) {
 
             return JSON.serialize(e.getMessage());
