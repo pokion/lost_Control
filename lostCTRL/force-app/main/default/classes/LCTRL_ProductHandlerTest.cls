@@ -17,7 +17,6 @@ public class LCTRL_ProductHandlerTest {
         product.Id = prodRes.getId();
 
         LCTRL_ProductWrapper wrapper = new LCTRL_ProductWrapper();
-        wrapper.id = 'asd';
         wrapper.name = 'asd';
         wrapper.quantity = 1;
         wrapper.description = 'asd';
